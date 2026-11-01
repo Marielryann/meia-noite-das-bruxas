@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1a002c" />
+  <meta name="description" content="Site interativo de Halloween: contador para a Meia-Noite das Bruxas, mini-game Doces ou Travessuras e gerador de nomes de monstro." />
+  <title>Meia-Noite das Bruxas 🎃 | Doces ou Travessuras</title>
+
+  <!-- Fontes góticas/festivas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Fundo em canvas: morcegos e abóboras flutuando -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- Camada de névoa -->
+  <div class="fog" aria-hidden="true"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="Voltar ao topo">
+      <span class="brand__icon" aria-hidden="true">🎃</span>
+      <span class="brand__text">Halloween</span>
+    </a>
+
+    <button id="muteBtn" class="icon-btn" type="button" aria-pressed="false" aria-label="Silenciar áudio">
+      <span class="icon-btn__icon" aria-hidden="true">🔊</span>
+      <span class="icon-btn__label">Som</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section id="hero" class="hero">
+      <p class="hero__kicker">31 de Outubro</p>
+
+      <h1 class="hero__title">
+        Meia-Noite<br />
+        <span>das Bruxas</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Afie sua abóbora, acenda as velas e descubra se você merece
+        <strong>doces</strong>… ou <strong>travessuras</strong>.
+      </p>
+
+      <!-- Contador regressivo -->
+      <div class="countdown" id="countdown" role="timer" aria-live="off" aria-label="Contagem regressiva para a Meia-Noite das Bruxas">
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-days">00</span>
+          <span class="countdown__label">Dias</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-hours">00</span>
+          <span class="countdown__label">Horas</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-minutes">00</span>
+          <span class="countdown__label">Min</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" id="cd-seconds">00</span>
+          <span class="countdown__label">Seg</span>
+        </div>
+      </div>
+
+      <a class="btn btn--green" href="#game">Entrar no jogo 🍬</a>
+    </section>
+
+    <!-- ================= MINI-GAME ================= -->
+    <section id="game" class="section">
+      <div class="card" id="gameCard">
+        <h2 class="section__title">Doces ou Travessuras</h2>
+        <p class="section__desc">
+          Toque no caldeirão e deixe o destino escolher. Cada doce vale
+          <strong>1 ponto</strong> de glicose assombrada.
+        </p>
+
+        <div class="score">
+          <span aria-hidden="true">🍬</span>
+          <span>Doces coletados:</span>
+          <span class="score__value" id="scoreValue">0</span>
+        </div>
+
+        <button id="treatBtn" class="btn btn--big" type="button">
+          Doces ou Travessuras?
+        </button>
+
+        <p class="game-message" id="gameMessage" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ================= GERADOR DE NOMES ================= -->
+    <section id="namegen" class="section">
+      <div class="card">
+        <h2 class="section__title">Gerador de Nome de Monstro</h2>
+        <p class="section__desc">
+          Digite seu nome e receba seu apelido das trevas.
+        </p>
+
+        <form id="nameForm" class="name-form" autocomplete="off">
+          <label class="sr-only" for="nameInput">Seu nome</label>
+          <input
+            id="nameInput"
+            type="text"
+            placeholder="Digite seu nome..."
+            maxlength="24"
+            required
+          />
+          <button class="btn" type="submit">Revelar 🔮</button>
+        </form>
+
+        <p class="monster-result" id="monsterResult" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Feito com 🎃, 🦇 e um pouco de magia negra em HTML, CSS e JS — <span id="year"></span></p>
+  </footer>
+
+  <!-- Overlay do susto (jumpscare) -->
+  <div class="jumpscare" id="jumpscare" aria-hidden="true">
+    <span class="jumpscare__ghost" aria-hidden="true">👻</span>
+  </div>
+
+  <!-- Scripts em ordem de dependência -->
+  <script src="js/audio.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/game.js" defer></script>
+  <script src="js/namegen.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
